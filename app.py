@@ -2,7 +2,7 @@
 tasks = []
 def add_task(task_name):
     """Thêm một công việc mới vào danh sách."""
-    task.ppend(task_name)
+    task.append(task_name)
     print(f"Đã thêm công việc: '{task_name}'")
 #--- Điểm bắt đầu của chương trình ---
 if __name__=="__main__":
