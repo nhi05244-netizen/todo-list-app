@@ -1,52 +1,37 @@
-# Danh sách để lưu các công việc
+# Danh sách công việc (mỗi công việc là một dictionary)
 tasks = []
-def add_task(task_name):
-    """Thêm một công việc mới vào danh sách."""
-    tasks.append(task_name)
-    print(f"Đã thêm công việc: '{task_name}'")
-#--- Điểm bắt đầu của chương trình ---
-if __name__=="__main__":
-    print("Chào mừng đến với ứng dụng To-Do-List!")
-    add_task("Học bài Git và GitHub")
-    add_task("Làm bài tập thực hành ở nhà")
 
+# Hàm thêm công việc mới
+def add_task(task_name):
+    tasks.append({'name': task_name, 'completed': False})
+
+# Hàm hiển thị danh sách công việc
 def list_tasks():
-    """Hiển thị danh sách công việc với trạng thái."""
-    if tasks:
+    if not tasks:
+        print("Hiện không có công việc nào.")
+    else:
         print("Danh sách công việc:")
         for i, task in enumerate(tasks, start=1):
             status = "[x]" if task['completed'] else "[ ]"
             print(f"{i}. {status} {task['name']}")
-    else:
-        print("Hiện không có công việc nào.")
 
+# Hàm đánh dấu công việc là hoàn thành
 def complete_task(task_index):
-    """Đánh dấu một công việc là hoàn thành."""
-    try:
-        task = tasks[task_index]
-        task['completed'] = True
-        print(f"Đã hoàn thành: {task['name']}")
-    except IndexError:
+    if 0 <= task_index < len(tasks):
+        tasks[task_index]['completed'] = True
+        print(f"Đã hoàn thành: {tasks[task_index]['name']}")
+    else:
         print("Chỉ số công việc không hợp lệ.")
-
-def delete_task(task_index):
-    """Xóa một công việc khỏi danh sách theo chỉ số."""
-    try:
-        removed_task = tasks.pop(task_index)
-        print(f"Đã xóa công việc: {removed_task['name']}")
-    except IndexError:
-        print("Chỉ số công việc không hợp lệ. Không thể xóa.")
-
-# --- Chạy chương trình ---
+        
 if __name__ == "__main__":
-    print()
-    list_tasks()
+    add_task("Học bài Git")
+    add_task("Làm bài tập Python")
 
+    list_tasks()
     print()
+
     complete_task(1)
-
     print()
-    delete_task(0)  # Xóa công việc đầu tiên
 
-    print()
     list_tasks()
+main
