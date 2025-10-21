@@ -10,3 +10,10 @@ if __name__=="__main__":
     add_task("Học bài Git và GitHub")
     add_task("Làm bài tập thực hành ở nhà")
 
+def list_tasks():
+    if tasks:
+        print("Danh sách công việc:")
+        for i in range(len(tasks)):
+            print(f"{i + 1}. {tasks[i]}")
+    else:
+        print("Hiện không có công việc nào.")
