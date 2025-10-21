@@ -11,22 +11,6 @@ if __name__=="__main__":
     add_task("Làm bài tập thực hành ở nhà")
 
 def list_tasks():
-    if tasks:
-        print("Danh sách công việc:")
-        for i in range(len(tasks)):
-            print(f"{i + 1}. {tasks[i]}")
-    else:
-        print("Hiện không có công việc nào.")
-
-def complete_task(task_index):
-    try:
-        task = tasks[task_index]
-        task['completed'] = True
-        print(f"Đã hoàn thành: {task['name']}")
-    except IndexError:
-        print("Chỉ số công việc không hợp lệ.")
-
-def list_tasks_1():
     """Hiển thị danh sách công việc với trạng thái."""
     if tasks:
         print("Danh sách công việc:")
@@ -36,35 +20,27 @@ def list_tasks_1():
     else:
         print("Hiện không có công việc nào.")
 
-if __name__ == "__main__":
-    print("Chào mừng đến với ứng dụng To-Do-List!")
-
-    add_task("Học bài Git và GitHub")
-    add_task("Làm bài tập thực hành ở nhà")
-
-    print()
-    list_tasks_1()
-
-    print()
-    complete_task(1)
-
-    print()
-    list_tasks_1()
+def complete_task(task_index):
+    """Đánh dấu một công việc là hoàn thành."""
+    try:
+        task = tasks[task_index]
+        task['completed'] = True
+        print(f"Đã hoàn thành: {task['name']}")
+    except IndexError:
+        print("Chỉ số công việc không hợp lệ.")
 
 def delete_task(task_index):
+    """Xóa một công việc khỏi danh sách theo chỉ số."""
     try:
         removed_task = tasks.pop(task_index)
         print(f"Đã xóa công việc: {removed_task['name']}")
     except IndexError:
         print("Chỉ số công việc không hợp lệ. Không thể xóa.")
 
+# --- Chạy chương trình ---
 if __name__ == "__main__":
-    print("Chào mừng đến với ứng dụng To-Do-List!")
-    add_task("Học bài Git và GitHub")
-    add_task("Làm bài tập thực hành ở nhà")
-
     print()
-    list_tasks_1()
+    list_tasks()
 
     print()
     complete_task(1)
@@ -73,4 +49,4 @@ if __name__ == "__main__":
     delete_task(0)  # Xóa công việc đầu tiên
 
     print()
-    list_tasks_1()
+    list_tasks()
